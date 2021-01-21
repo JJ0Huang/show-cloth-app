@@ -1,5 +1,5 @@
 const app = getApp()
-
+import config from '../../../config'
 Page({
   data: {
     avatarUrl: './user-unlogin.png',
@@ -7,10 +7,10 @@ Page({
     logged: false,
     takeSession: false,
     requestResult: '',
-    chatRoomEnvId: 'test-0fbrj',
+    chatRoomEnvId: config.env,
     chatRoomCollection: 'chatroom',
     chatRoomGroupId: 'demo',
-    chatRoomGroupName: '聊天室',
+    chatRoomGroupName: config.app_name,
 
     // functions for used in chatroom components
     onGetUserInfo: null,
@@ -18,6 +18,8 @@ Page({
   },
 
   onLoad: function() {
+    console.log(config);
+    
     /**
      * 获取用户信息
      */

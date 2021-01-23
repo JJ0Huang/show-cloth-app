@@ -7,17 +7,13 @@ Page({
     userInfo: {},
     logged: false,
     takeSession: false,
-    requestResult: ''
+    requestResult: '',
+
+    tabbarList:['热销产品','产品一类','产品二类'],
+    tabbarIndex: 0,
   },
 
   onLoad: function() {
-    if (!wx.cloud) {
-      wx.redirectTo({
-        url: '../chooseLib/chooseLib',
-      })
-      return
-    }
-
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -29,6 +25,8 @@ Page({
                 avatarUrl: res.userInfo.avatarUrl,
                 userInfo: res.userInfo
               })
+              console.log('用户信息');
+              console.log(res);
             }
           })
         }
@@ -36,14 +34,15 @@ Page({
     })
   },
 
-  onGetUserInfo: function(e) {
-    if (!this.data.logged && e.detail.userInfo) {
-      this.setData({
-        logged: true,
-        avatarUrl: e.detail.userInfo.avatarUrl,
-        userInfo: e.detail.userInfo
-      })
-    }
+  /**
+   * 监听 tabbarIndex，若发生改变，则展示对应内容
+   */
+  onTabbarIndex(e){
+    console.log('tabbarIndex:');
+    console.log(e.detail)
+    this.setData({
+      tabbarIndex: e.detail
+    })
   },
 
   onGetOpenid: function() {
@@ -54,15 +53,9 @@ Page({
       success: res => {
         console.log('[云函数] [login] user openid: ', res.result.openid)
         app.globalData.openid = res.result.openid
-        wx.navigateTo({
-          url: '../userConsole/userConsole',
-        })
       },
       fail: err => {
         console.error('[云函数] [login] 调用失败', err)
-        wx.navigateTo({
-          url: '../deployFunctions/deployFunctions',
-        })
       }
     })
   },
@@ -89,13 +82,10 @@ Page({
           success: res => {
             console.log('[上传文件] 成功：', res)
 
-            app.globalData.fileID = res.fileID
-            app.globalData.cloudPath = cloudPath
-            app.globalData.imagePath = filePath
+            // app.globalData.fileID = res.fileID
+            // app.globalData.cloudPath = cloudPath
+            // app.globalData.imagePath = filePath
             
-            wx.navigateTo({
-              url: '../storageConsole/storageConsole'
-            })
           },
           fail: e => {
             console.error('[上传文件] 失败：', e)

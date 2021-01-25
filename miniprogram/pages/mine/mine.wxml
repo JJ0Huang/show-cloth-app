@@ -1,2 +1,6 @@
-<!--pages/mine/mine.wxml-->
-<text>pages/mine/mine.wxml</text>
+<view>
+  用户名
+</view>
+<view>
+  我的收藏，联系客户
+</view>

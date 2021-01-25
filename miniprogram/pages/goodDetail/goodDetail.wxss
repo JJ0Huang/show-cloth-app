@@ -1,0 +1,20 @@
+#page{
+  background-color: rgb(233, 233, 233);
+}
+view{
+  background-color: #fff;
+}
+.colorBox{
+  box-sizing: border-box;
+  padding: 15rpx;
+}
+.pd15{
+  padding: 15rpx;
+}
+.pd30{
+  padding: 30rpx 0;
+}
+#goodDes{
+  color: #aaa;
+  font-size: small;
+}

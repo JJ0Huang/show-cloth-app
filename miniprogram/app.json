@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/im/im",
     "pages/im/room/room",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/goodDetail/goodDetail"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -13,23 +14,29 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "首页",
-      "iconPath": "",
-      "selectedIconPath": ""
-    },{
-      "pagePath": "pages/mine/mine",
-      "text": "我的",
-      "iconPath": "",
-      "selectedIconPath": ""
-    }]
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "",
+        "selectedIconPath": ""
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "",
+        "selectedIconPath": ""
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
     "van-search": "@vant/weapp/search/index",
     "van-sidebar": "@vant/weapp/sidebar/index",
     "van-sidebar-item": "@vant/weapp/sidebar-item/index",
-    "van-card": "@vant/weapp/card/index"
+    "van-card": "@vant/weapp/card/index",
+    "van-row": "@vant/weapp/row/index",
+    "van-col": "@vant/weapp/col/index",
+    "van-image": "@vant/weapp/image/index"
   }
 }

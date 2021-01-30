@@ -26,7 +26,9 @@
 
 <!-- 测试 -->
 <navigator url="../im/im" open-type="navigate" class="uploader-text">
-	<text>即时通信 Demo</text>
+	<fixed-server></fixed-server>
 </navigator>
 
-<button bindtap="onGetOpenid">获取openid</button>
+<!-- <button bindtap="onGetOpenid">获取openid</button> -->
+
+

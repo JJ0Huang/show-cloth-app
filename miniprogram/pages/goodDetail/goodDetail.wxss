@@ -4,10 +4,6 @@
 view{
   background-color: #fff;
 }
-.colorBox{
-  box-sizing: border-box;
-  padding: 15rpx;
-}
 .pd15{
   padding: 15rpx;
 }
@@ -17,4 +13,12 @@ view{
 #goodDes{
   color: #aaa;
   font-size: small;
+}
+.small{
+  color: #aaa;
+  font-size: small;
+}
+.rem4{
+  width: 4rem;
+  text-align: center;
 }

@@ -6,7 +6,23 @@
   </swiper>
 
   <view style="margin-bottom:30rpx" class="pd30">
-    <view class="pd15">商品名，收藏</view>
+    <view class="pd15">
+      <text>商品名</text>
+      <view style="float:right">
+        <block wx:if="{{collected==false}}">
+          <view class="rem4">
+            <van-icon color="#aaa" bindtap="collectGood" name="like-o" />
+          </view>
+          <view class="small rem4">收藏</view>
+        </block>
+        <block wx:else>
+          <view class="rem4">
+            <van-icon bindtap="collectGood" color="red" name="like" />
+          </view>
+          <view class="small rem4">取消收藏</view>
+        </block>
+      </view>
+    </view>
   </view>
 
   <!-- 货号，克重，幅宽，缩水率，备注 -->
@@ -31,3 +47,7 @@
 <!-- 色卡展示 -->
 <view class="pd15">色卡展示</view>
 <image mode="widthFix" style="width:100vw"></image>
+
+<navigator url="../im/im" open-type="navigate" class="uploader-text">
+	<fixed-server></fixed-server>
+</navigator>

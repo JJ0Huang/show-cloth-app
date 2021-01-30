@@ -1,0 +1,3 @@
+<view class="fixedBox">
+  <van-image round width="3rem" height="3rem" fit="cover" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+</view>

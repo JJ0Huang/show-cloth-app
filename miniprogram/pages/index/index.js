@@ -9,7 +9,7 @@ Page({
     takeSession: false,
     requestResult: '',
 
-    tabbarList:['热销产品','产品一类','产品二类'],
+    tabbarList:['极致性价比','新品上市','仿天丝(薄)','仿天丝(厚)','精棉弹力','棉锦弹力','洗水棉(薄）','洗水棉(厚）','过胶涂层','雪花绒棉','醋酸面料'],
     tabbarIndex: 0,
   },
 
@@ -27,6 +27,7 @@ Page({
               })
               console.log('用户信息');
               console.log(res);
+              app.globalData.userInfo=res.userInfo
             }
           })
         }

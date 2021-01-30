@@ -1,1 +1,11 @@
-/* pages/mine/mine.wxss */
+.bd10rpx{
+  border: 10rpx solid rgba(255, 187, 0, 0.712);
+}
+#page{
+  background-color: rgb(255, 102, 0);
+}
+.lh10rem{
+  height: 10rem;
+  line-height: 10rem;
+  text-align: center;
+}

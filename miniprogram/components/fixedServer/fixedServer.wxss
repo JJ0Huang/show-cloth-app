@@ -1,0 +1,9 @@
+.fixedBox{
+  position: fixed;
+  bottom: 40rpx;
+  right: 40rpx;
+  color: red;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1.5rem;
+}

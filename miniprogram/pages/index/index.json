@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "fixed-server":"../../components/fixedServer/fixedServer"
+  },
   "navigationBarTitleText": "首页"
 }

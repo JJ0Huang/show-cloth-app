@@ -1,6 +1,13 @@
-<view>
-  用户名
-</view>
-<view>
-  我的收藏，联系客户
+<view id="page">
+  <view>
+    <view class="lh10rem" style="box-sizing:border-box;padding:2rem">
+        <van-image custom-class="bd10rpx" round width="6rem" height="6rem" src="{{userInfo.avatarUrl}}" />
+    </view>
+    <view class="lh10rem">
+      <text>{{userInfo.nickName}}</text>
+    </view>
+  </view>
+  <view>
+    我的收藏，联系客户
+  </view>
 </view>

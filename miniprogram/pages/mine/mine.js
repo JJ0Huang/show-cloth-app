@@ -1,66 +1,21 @@
-// pages/mine/mine.js
+const app = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
-  data: {
-
+  onLoad() {
+    this.getUserInfo()
   },
-
   /**
-   * 生命周期函数--监听页面加载
+   * 获取用户信息，设置定时，保证获取成功
    */
-  onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  getUserInfo(){
+    let appUserInfo = app.globalData.userInfo
+    if (appUserInfo) {
+      this.setData({
+        userInfo: app.globalData.userInfo
+      })
+    } else {
+      setInterval(()=>{
+        this.getUserInfo()
+      },500)
+    }
   }
 })

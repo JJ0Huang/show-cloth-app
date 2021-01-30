@@ -1,13 +1,20 @@
 <view id="page">
-  <view>
-    <view class="lh10rem" style="box-sizing:border-box;padding:2rem">
-        <van-image custom-class="bd10rpx" round width="6rem" height="6rem" src="{{userInfo.avatarUrl}}" />
+
+  <view class="row" id="top">
+    <view id="imageBox">
+      <!-- 212rpx -->
+      <van-image custom-class="bd10rpx" round width="192rpx" height="192rpx" src="{{userInfo.avatarUrl}}" />
     </view>
-    <view class="lh10rem">
+    <view id="userName">
       <text>{{userInfo.nickName}}</text>
     </view>
   </view>
+
   <view>
-    我的收藏，联系客户
+    <van-cell icon="shop-o" title="我的收藏" is-link size="large" />
+    <navigator url="../im/im" open-type="navigate">
+      <van-cell icon="shop-o" title="联系客服" is-link size="large" />
+    </navigator>
+    <van-cell wx:if="{{serversDb=='empty'}}" bind:click="initServer" icon="shop-o" title="初始化管理员" is-link size="large" />
   </view>
 </view>

@@ -5,3 +5,8 @@
 
 ## 使用到的数据库有
 - chatroom
+- servers
+
+## 能直接使用的 globalData 有
+- userInfo
+- openid

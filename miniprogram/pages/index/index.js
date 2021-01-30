@@ -1,5 +1,6 @@
 //index.js
 const app = getApp()
+const db = wx.cloud.database()
 
 Page({
   data: {
@@ -9,11 +10,12 @@ Page({
     takeSession: false,
     requestResult: '',
 
-    tabbarList:['极致性价比','新品上市','仿天丝(薄)','仿天丝(厚)','精棉弹力','棉锦弹力','洗水棉(薄）','洗水棉(厚）','过胶涂层','雪花绒棉','醋酸面料'],
+    tabbarList: ['极致性价比', '新品上市', '仿天丝(薄)', '仿天丝(厚)', '精棉弹力', '棉锦弹力', '洗水棉(薄）', '洗水棉(厚）', '过胶涂层', '雪花绒棉', '醋酸面料'],
     tabbarIndex: 0,
   },
 
-  onLoad: function() {
+  onLoad: function () {
+    this.onGetOpenid()
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -26,8 +28,8 @@ Page({
                 userInfo: res.userInfo
               })
               console.log('用户信息');
-              console.log(res);
-              app.globalData.userInfo=res.userInfo
+              console.log(res.userInfo);
+              app.globalData.userInfo = res.userInfo
             }
           })
         }
@@ -38,15 +40,14 @@ Page({
   /**
    * 监听 tabbarIndex，若发生改变，则展示对应内容
    */
-  onTabbarIndex(e){
+  onTabbarIndex(e) {
     console.log('tabbarIndex:');
     console.log(e.detail)
     this.setData({
       tabbarIndex: e.detail
     })
   },
-
-  onGetOpenid: function() {
+  onGetOpenid: function () {
     // 调用云函数
     wx.cloud.callFunction({
       name: 'login',
@@ -54,6 +55,17 @@ Page({
       success: res => {
         console.log('[云函数] [login] user openid: ', res.result.openid)
         app.globalData.openid = res.result.openid
+        this.setData({
+          openid: res.result.openid
+        })
+        db.collection('servers').where({
+          serverOpenid: this.data.openid
+        }).get().then(res => {
+          console.log('[db] [servers] [onGetOpenid] res.data.length:', res.data.length);
+          if(res.data.length == 1){
+            console.log('欢迎管理员~');
+          }
+        })
       },
       fail: err => {
         console.error('[云函数] [login] 调用失败', err)
@@ -74,7 +86,7 @@ Page({
         })
 
         const filePath = res.tempFilePaths[0]
-        
+
         // 上传图片
         const cloudPath = `my-image${filePath.match(/\.[^.]+?$/)[0]}`
         wx.cloud.uploadFile({
@@ -86,7 +98,7 @@ Page({
             // app.globalData.fileID = res.fileID
             // app.globalData.cloudPath = cloudPath
             // app.globalData.imagePath = filePath
-            
+
           },
           fail: e => {
             console.error('[上传文件] 失败：', e)

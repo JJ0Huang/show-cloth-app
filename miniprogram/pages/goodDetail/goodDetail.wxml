@@ -1,13 +1,15 @@
 <view id="page">
   <swiper autoplay="true" circular="true" style="background-color:#fff">
-    <block wx:for="{{3}}" wx:key="index">
-      <swiper-item>{{item}}</swiper-item>
+    <block wx:for="{{good.goodSwiper}}" wx:key="index">
+      <swiper-item>
+        <image src="{{item}}"></image>
+      </swiper-item>
     </block>
   </swiper>
 
   <view style="margin-bottom:30rpx" class="pd30">
     <view class="pd15">
-      <text>商品名</text>
+      <text>{{good.goodName}}</text>
       <view style="float:right">
         <block wx:if="{{collected==false}}">
           <view class="rem4">
@@ -30,15 +32,15 @@
     <view class="pd15">详细参数</view>
     <view id="goodDes">
       <van-row>
-        <van-col offset="1" span="10">货号：</van-col>
-        <van-col offset="2" span="10">克重：</van-col>
+        <van-col offset="1" span="10">货号：{{good.goodId}}</van-col>
+        <van-col offset="2" span="10">克重：{{good.goodWeight}}</van-col>
       </van-row>
       <van-row>
-        <van-col offset="1" span="10">幅宽：</van-col>
-        <van-col offset="2" span="10">缩水率：</van-col>
+        <van-col offset="1" span="10">幅宽：{{good.goodSize}}</van-col>
+        <van-col offset="2" span="10">缩水率：{{good.goodShrinkage}}</van-col>
       </van-row>
       <van-row>
-        <van-col offset="1" span="10">备注：</van-col>
+        <van-col offset="1" span="10">备注：{{good.goodRemark}}</van-col>
       </van-row>
     </view>
   </view>
@@ -46,7 +48,7 @@
 
 <!-- 色卡展示 -->
 <view class="pd15">色卡展示</view>
-<image mode="widthFix" style="width:100vw"></image>
+<image mode="widthFix" style="width:100vw" src="{{good.goodLongPicture}}"></image>
 
 <navigator url="../im/im" open-type="navigate" class="uploader-text">
 	<fixed-server></fixed-server>

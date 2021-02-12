@@ -16,9 +16,9 @@
 	</van-sidebar>
 
 	<view id="cardList">
-		<block wx:if="{{tabbarIndex==0}}" wx:for="{{2}}" wx:key="index">
-      <navigator url="../goodDetail/goodDetail?index={{item}}">
-				<van-card custom-class="card" desc="描述信息" title="{{item}}" thumb="https://img.yzcdn.cn/vant/ipad.jpeg" />
+		<block wx:for="{{goodList}}" wx:key="index">
+      <navigator url="../goodDetail/goodDetail?dbName={{eTabbarList[tabbarIndex]}}&_id={{item._id}}">
+				<van-card custom-class="card" desc="{{item.goodDescribe}}" title="{{item.goodName}}" thumb="{{item.goodSwiper[0]}}" />
 			</navigator>
     </block>
 	</view>

@@ -1,0 +1,7 @@
+<view>
+  <block wx:for="{{tabbarList}}" wx:key="index">
+    <navigator url="./manage/manage?index={{index}}" open-type="navigate">
+      <van-cell icon="shop-o" title="{{item}}" is-link size="large" />
+    </navigator>
+  </block>
+</view>

@@ -1,0 +1,4 @@
+<navigator url="../addGood/addGood?eTabbarName={{eTabbarName}}">
+  <button>新增商品</button>
+</navigator>
+

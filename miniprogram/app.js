@@ -1,4 +1,5 @@
 //app.js
+import config from './config'
 App({
   onLaunch: function () {
     if (!wx.cloud) {
@@ -15,5 +16,22 @@ App({
     }
 
     this.globalData = {}
+
+    for (let index = 0; index < config.eTabbarList.length; index++) {
+      this.initDb(config.eTabbarList[index])
+    }
+  },
+  initDb(dbName) {
+    try {
+      wx.cloud.callFunction({
+        name: 'initDb',
+        data: {
+          dbName: dbName
+        },
+        // success(res){
+        //   console.log('[app.js]',res);
+        // }
+      })
+    } catch (e) {}
   }
 })

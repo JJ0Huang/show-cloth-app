@@ -1,9 +1,15 @@
 const app = getApp()
 const db = wx.cloud.database()
 Page({
+  data:{
+    isServer: false
+  },
   onLoad() {
     this.getUserInfo()
     this.isHaveServer()
+    this.setData({
+      isServer: app.globalData.isServer
+    })
   },
   /**
    * 获取用户信息，设置定时，保证获取成功
@@ -15,7 +21,7 @@ Page({
         userInfo: app.globalData.userInfo
       })
     } else {
-      setInterval(() => {
+      setTimeout(() => {
         this.getUserInfo()
       }, 500)
     }

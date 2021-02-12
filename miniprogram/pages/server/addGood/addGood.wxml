@@ -1,0 +1,24 @@
+<van-cell-group>
+  <van-field label="商品名" bind:change="onName" />
+  <van-field label="商品描述" bind:change="onDescribe" />
+  <van-field label="货号" bind:change="onId" />
+  <van-field label="克重" bind:change="onWeight" />
+  <van-field label="宽幅" bind:change="onSize" />
+  <van-field label="缩水率" bind:change="onShrinkage" />
+  <van-field label="备注" bind:change="onRemark" />
+</van-cell-group>
+
+<view>
+  <swiper wx:if="{{tempFilePaths}}" autoplay="true" circular="true">
+    <block wx:for="{{tempFilePaths}}" wx:key="index">
+      <swiper-item>
+        <image src="{{item}}"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+  <button bindtap="chooseSwiper">新增轮播图片</button>
+  <image wx:if="{{tempFilePath}}" src="{{tempFilePath}}"></image>
+  <button bindtap="chooseLongPhoto">新增商品介绍长图</button>
+</view>
+<button wx:if="{{longPictureFileId&&swiperFileIds.length==tempFilePaths.length}}" bindtap="addGood">确认新增</button>
+<button wx:else bindtap="upload">上传</button>

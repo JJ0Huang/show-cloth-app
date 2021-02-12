@@ -4,7 +4,10 @@
     "pages/im/im",
     "pages/im/room/room",
     "pages/mine/mine",
-    "pages/goodDetail/goodDetail"
+    "pages/goodDetail/goodDetail",
+    "pages/server/index",
+    "pages/server/manage/manage",
+    "pages/server/addGood/addGood"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -40,6 +43,7 @@
     "van-image": "@vant/weapp/image/index",
     "van-icon": "@vant/weapp/icon/index",
     "van-cell": "@vant/weapp/cell/index",
-    "van-cell-group": "@vant/weapp/cell-group/index"
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-field": "@vant/weapp/field/index"
   }
 }

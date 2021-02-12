@@ -1,6 +1,7 @@
 //index.js
 const app = getApp()
 const db = wx.cloud.database()
+import config from '../../config'
 
 Page({
   data: {
@@ -10,8 +11,10 @@ Page({
     takeSession: false,
     requestResult: '',
 
-    tabbarList: ['极致性价比', '新品上市', '仿天丝(薄)', '仿天丝(厚)', '精棉弹力', '棉锦弹力', '洗水棉(薄）', '洗水棉(厚）', '过胶涂层', '雪花绒棉', '醋酸面料'],
+    tabbarList: config.tabbarList,
+    eTabbarList: config.eTabbarList,
     tabbarIndex: 0,
+
   },
 
   onLoad: function () {
@@ -36,15 +39,23 @@ Page({
       }
     })
   },
-
   /**
    * 监听 tabbarIndex，若发生改变，则展示对应内容
    */
   onTabbarIndex(e) {
-    console.log('tabbarIndex:');
-    console.log(e.detail)
     this.setData({
       tabbarIndex: e.detail
+    })
+    wx.cloud.callFunction({
+      name: 'get',
+      data: {
+        dbName: config.eTabbarList[e.detail]
+      }
+    }).then(res => {
+      this.setData({
+        goodList: res.result.data
+      })
+      console.log(this.data.goodList);
     })
   },
   onGetOpenid: function () {
@@ -61,9 +72,9 @@ Page({
         db.collection('servers').where({
           serverOpenid: this.data.openid
         }).get().then(res => {
-          console.log('[db] [servers] [onGetOpenid] res.data.length:', res.data.length);
-          if(res.data.length == 1){
-            console.log('欢迎管理员~');
+          if (res.data.length == 1) {
+            console.log(`[index] 欢迎管理员 [${this.data.openid}]`);
+            app.globalData.isServer = true
           }
         })
       },
@@ -71,51 +82,5 @@ Page({
         console.error('[云函数] [login] 调用失败', err)
       }
     })
-  },
-
-  // 上传图片
-  doUpload: function () {
-    // 选择图片
-    wx.chooseImage({
-      count: 1,
-      sizeType: ['compressed'],
-      sourceType: ['album', 'camera'],
-      success: function (res) {
-        wx.showLoading({
-          title: '上传中',
-        })
-
-        const filePath = res.tempFilePaths[0]
-
-        // 上传图片
-        const cloudPath = `my-image${filePath.match(/\.[^.]+?$/)[0]}`
-        wx.cloud.uploadFile({
-          cloudPath,
-          filePath,
-          success: res => {
-            console.log('[上传文件] 成功：', res)
-
-            // app.globalData.fileID = res.fileID
-            // app.globalData.cloudPath = cloudPath
-            // app.globalData.imagePath = filePath
-
-          },
-          fail: e => {
-            console.error('[上传文件] 失败：', e)
-            wx.showToast({
-              icon: 'none',
-              title: '上传失败',
-            })
-          },
-          complete: () => {
-            wx.hideLoading()
-          }
-        })
-      },
-      fail: e => {
-        console.error(e)
-      }
-    })
-  },
-
+  }
 })

@@ -12,9 +12,12 @@
 
   <view>
     <van-cell icon="shop-o" title="我的收藏" is-link size="large" />
-    <navigator url="../im/im" open-type="navigate">
+    <navigator url="../im/room/room" open-type="navigate">
       <van-cell icon="shop-o" title="联系客服" is-link size="large" />
     </navigator>
     <van-cell wx:if="{{serversDb=='empty'}}" bind:click="initServer" icon="shop-o" title="初始化管理员" is-link size="large" />
+    <navigator wx:if="isServer==true" url="../server/index" open-type="navigate">
+      <van-cell icon="shop-o" title="商店管理" is-link size="large" />
+    </navigator>
   </view>
 </view>

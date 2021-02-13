@@ -1,4 +1,7 @@
 <view>
+  <navigator url="./manageSwiper/manageSwiper" open-type="navigate">
+    <van-cell icon="shop-o" title="首页轮播图管理" is-link size="large" />
+  </navigator>
   <block wx:for="{{tabbarList}}" wx:key="index">
     <navigator url="./manage/manage?index={{index}}" open-type="navigate">
       <van-cell icon="shop-o" title="{{item}}" is-link size="large" />

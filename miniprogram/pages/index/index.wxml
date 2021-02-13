@@ -2,9 +2,12 @@
 <van-search value="{{ value }}" placeholder="请输入产品代号或产品名" />
 
 <!-- 轮播图 -->
-<swiper autoplay="true" circular="true">
-	<swiper-item>1</swiper-item>
-	<swiper-item>2</swiper-item>
+<swiper autoplay="true" circular="true" style="background-color:#fff">
+  <block wx:for="{{swiperFileIds}}" wx:key="index">
+    <swiper-item>
+      <image src="{{item}}"></image>
+    </swiper-item>
+  </block>
 </swiper>
 
 <!-- 侧栏和商品 -->

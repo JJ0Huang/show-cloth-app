@@ -1,0 +1,9 @@
+<swiper autoplay="true" circular="true" style="background-color:#fff">
+  <block wx:for="{{swiperFileIds}}" wx:key="index">
+    <swiper-item>
+      <image src="{{item}}"></image>
+    </swiper-item>
+  </block>
+</swiper>
+
+<button bindtap="chooseImage">选择图片</button>

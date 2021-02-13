@@ -48,6 +48,9 @@ Page({
    * 初始化第一个管理员，以 openid 为标志
    */
   initServer() {
+    wx.showLoading({
+      title: '努力加载中……',
+    })
     wx.cloud.callFunction({
       name: 'login',
       data: {},
@@ -62,6 +65,7 @@ Page({
           wx.reLaunch({
             url: '../index/index',
           })
+          wx.hideLoading()
         })
       },
       fail: err => {

@@ -8,7 +8,5 @@ const db = cloud.database()
 
 // 云函数入口函数
 exports.main = async (event) => {
-  db.collection(event.dbName).doc(event._id).update({
-    data: event.data
-  })
+  return await db.collection(event.dbName).doc(event._id).remove()
 }

@@ -18,6 +18,25 @@ Page({
   },
 
   onLoad: function () {
+
+    wx.cloud.callFunction({
+      name: 'get',
+      data: {
+        dbName: 'swiper'
+      }
+    }).then(res => {
+      console.log('[index.js] [onload]', res.result.data[0].swiperFileIds);
+      if (res.result.data[0].swiperFileIds) {
+        this.setData({
+          swiperFileIds: res.result.data[0].swiperFileIds
+        })
+      }
+    })
+
+
+    this.onTabbarIndex({
+      detail: 0
+    })
     this.onGetOpenid()
     // 获取用户信息
     wx.getSetting({
@@ -30,8 +49,7 @@ Page({
                 avatarUrl: res.userInfo.avatarUrl,
                 userInfo: res.userInfo
               })
-              console.log('用户信息');
-              console.log(res.userInfo);
+              console.log('用户信息', res.userInfo);
               app.globalData.userInfo = res.userInfo
             }
           })
@@ -46,6 +64,9 @@ Page({
     this.setData({
       tabbarIndex: e.detail
     })
+    wx.showLoading({
+      title: '努力加载中……',
+    })
     wx.cloud.callFunction({
       name: 'get',
       data: {
@@ -56,10 +77,14 @@ Page({
         goodList: res.result.data
       })
       console.log(this.data.goodList);
+      wx.hideLoading()
     })
   },
   onGetOpenid: function () {
     // 调用云函数
+    wx.showLoading({
+      title: '努力加载中……',
+    })
     wx.cloud.callFunction({
       name: 'login',
       data: {},
@@ -76,6 +101,7 @@ Page({
             console.log(`[index] 欢迎管理员 [${this.data.openid}]`);
             app.globalData.isServer = true
           }
+          wx.hideLoading()
         })
       },
       fail: err => {

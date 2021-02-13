@@ -1,0 +1,8 @@
+<view id="cardList">
+  <block wx:for="{{goodList}}" wx:key="index">
+    <navigator url="../goodDetail/goodDetail?dbName={{item.dbName}}&_id={{item.goodId}}">
+      <van-card custom-class="card" desc="{{item.goodDescribe}}" title="{{item.goodName}}"
+        thumb="{{item.goodSwiper[0]}}" />
+    </navigator>
+  </block>
+</view>

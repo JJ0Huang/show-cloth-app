@@ -12,7 +12,7 @@
       <text>{{good.goodName}}</text>
       <view style="float:right">
         <block wx:if="{{collected==false}}">
-          <view class="rem4">
+          <view class="rem4" wx:if="{{collected==false}}">
             <van-icon color="#aaa" bindtap="collectGood" name="like-o" />
           </view>
           <view class="small rem4">收藏</view>

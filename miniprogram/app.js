@@ -20,6 +20,10 @@ App({
     for (let index = 0; index < config.eTabbarList.length; index++) {
       this.initDb(config.eTabbarList[index])
     }
+    this.initDb('collection')
+    this.initDb('chatroom')
+    this.initDb('servers')
+    this.initDb('swiper')
   },
   initDb(dbName) {
     try {
@@ -27,10 +31,7 @@ App({
         name: 'initDb',
         data: {
           dbName: dbName
-        },
-        // success(res){
-        //   console.log('[app.js]',res);
-        // }
+        }
       })
     } catch (e) {}
   }

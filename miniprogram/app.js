@@ -24,6 +24,30 @@ App({
     this.initDb('chatroom')
     this.initDb('servers')
     this.initDb('swiper')
+
+    // this.initSwiper()
+  },
+  initSwiper() {
+    wx.cloud.callFunction({
+      name: 'get',
+      data: {
+        dbName: 'swiper'
+      }
+    }).then(res => {
+      console.log('[app.js] [initSwiper]', res.result.data);
+      if (res.result.data.length == 0) {
+        wx.cloud.callFunction({
+          name: 'add',
+          data: {
+            dbName: 'swiper',
+            data: {
+              swiperFileIds: [0, 1]
+            }
+          }
+        })
+      }
+    })
+
   },
   initDb(dbName) {
     try {

@@ -33,7 +33,9 @@ Page({
         tempFilePaths: res.tempFilePaths
       })
       console.log('[manageSwiper.js] [chooseImage]', res.tempFilePaths);
-      this.uploadSwiper()
+      if (this.data._id) {
+        this.uploadSwiper()
+      }
     })
   },
   uploadSwiper() {
@@ -56,7 +58,7 @@ Page({
           })
           console.log('[manageSwiper.js] [uploadSwiper]', res.fileID);
           if (filePaths.length - 1 == index) {
-            this.ik()
+            this.removeOldSwiper()
           }
         },
         fail: e => {
@@ -71,7 +73,7 @@ Page({
       })
     }
   },
-  ik() {
+  removeOldSwiper() {
     wx.cloud.callFunction({
       name: 'remove',
       data: {

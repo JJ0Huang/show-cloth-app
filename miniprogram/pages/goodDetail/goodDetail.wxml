@@ -50,6 +50,6 @@
 <view class="pd15">色卡展示</view>
 <image mode="widthFix" style="width:100vw" src="{{good.goodLongPicture}}"></image>
 
-<navigator url="../im/im" open-type="navigate" class="uploader-text">
+<navigator url="../im/room/room" open-type="navigate" class="uploader-text">
 	<fixed-server></fixed-server>
 </navigator>

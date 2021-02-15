@@ -17,10 +17,22 @@
     <navigator url="../im/room/room" open-type="navigate">
       <van-cell icon="shop-o" title="联系客服" is-link size="large" />
     </navigator>
-    <van-cell wx:if="{{serversDb=='empty'}}" bind:click="initServer" icon="shop-o" title="初始化管理员" is-link
-      size="large" />
-    <navigator wx:if="isServer==true" url="../server/index" open-type="navigate">
+    <van-cell wx:if="{{serversLength==0}}" bind:click="initServer" icon="shop-o" title="初始化管理员" is-link size="large" />
+    <navigator wx:if="{{isServer==true}}" url="../server/index" open-type="navigate">
       <van-cell icon="shop-o" title="商店管理" is-link size="large" />
     </navigator>
+    <van-cell bindtap="beAServer" wx:if="{{!isServer&&serversLength>0&&!isAsk}}" icon="shop-o" title="管理员申请" is-link
+      size="large" />
   </view>
 </view>
+
+<!-- <block wx:if="{{isServer}}" wx:for="{{servers}}" wx:key="index"> -->
+<block wx:for="{{servers}}" wx:key="index">
+  <view wx:if="{{item.beAServer&&item.serverOpenid==-1}}">
+    [{{item.nickName}}] 申请成为管理员
+    <view class="row">
+      <button bindtap="sure" data-_id="{{item._id}}" data-_beaserver="{{item.beAServer}}">同意</button>
+      <button bindtap="reject" data-_id="{{item._id}}" data-_beaserver="{{item.beAServer}}">拒绝</button>
+    </view>
+  </view>
+</block>

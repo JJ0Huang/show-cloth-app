@@ -3,11 +3,11 @@
 
 <!-- 轮播图 -->
 <swiper autoplay="true" circular="true" style="background-color:#fff">
-  <block wx:for="{{swiperFileIds}}" wx:key="index">
-    <swiper-item>
+	<block wx:for="{{swiperFileIds}}" wx:key="index">
+		<swiper-item>
       <image src="{{item}}"></image>
     </swiper-item>
-  </block>
+	</block>
 </swiper>
 
 <!-- 侧栏和商品 -->
@@ -20,18 +20,17 @@
 
 	<view id="cardList">
 		<block wx:for="{{goodList}}" wx:key="index">
-      <navigator url="../goodDetail/goodDetail?dbName={{eTabbarList[tabbarIndex]}}&_id={{item._id}}">
-				<van-card custom-class="card" desc="{{item.goodDescribe}}" title="{{item.goodName}}" thumb="{{item.goodSwiper[0]}}" />
+			<navigator url="../goodDetail/goodDetail?dbName={{eTabbarList[tabbarIndex]}}&_id={{item._id}}">
+				<van-card custom-class="card" desc="{{item.goodDescribe}}" title="{{item.goodName}}"
+					thumb="{{item.goodSwiper[0]}}" />
 			</navigator>
-    </block>
+		</block>
 	</view>
 </view>
 
 <!-- 测试 -->
-<navigator url="../im/im" open-type="navigate" class="uploader-text">
+<navigator url="../im/room/room" open-type="navigate" class="uploader-text">
 	<fixed-server></fixed-server>
 </navigator>
 
 <!-- <button bindtap="onGetOpenid">获取openid</button> -->
-
-

@@ -14,10 +14,10 @@ Page({
     tabbarList: config.tabbarList,
     eTabbarList: config.eTabbarList,
     tabbarIndex: 0,
-
+    swiperFileIds: []
   },
 
-  onLoad: function () {
+  onShow() {
 
     wx.cloud.callFunction({
       name: 'get',
@@ -25,10 +25,25 @@ Page({
         dbName: 'swiper'
       }
     }).then(res => {
-      console.log('[index.js] [onload]', res.result.data[0].swiperFileIds);
-      if (res.result.data[0].swiperFileIds) {
+      if (res.result.data.length > 0) {
+        console.log('[index.js] [onload]', res.result.data[0].swiperFileIds);
         this.setData({
           swiperFileIds: res.result.data[0].swiperFileIds
+        })
+      } else {
+        wx.cloud.callFunction({
+          name: 'add',
+          data: {
+            dbName: 'swiper',
+            data: {
+              swiperFileIds: [0, 1]
+            }
+          }
+        }).then((res) => {
+          console.log('[index.js] [onload] [initSwiper]', res.result);
+          this.setData({
+            swiperFileIds: [0, 1]
+          })
         })
       }
     })
@@ -100,6 +115,9 @@ Page({
           if (res.data.length == 1) {
             console.log(`[index] 欢迎管理员 [${this.data.openid}]`);
             app.globalData.isServer = true
+          }else{
+            console.log('[index.js] [onGetOpenid] [您还不是管理员]');
+            app.globalData.isServer = false
           }
           wx.hideLoading()
         })

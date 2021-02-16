@@ -16,7 +16,6 @@
 		<block wx:for="{{tabbarList}}" wx:key="index">
 			<van-sidebar-item title="{{item}}" />
 		</block>
-		<!-- <van-sidebar-item title="搜索结果" /> -->
 	</van-sidebar>
 
 	<view id="cardList">

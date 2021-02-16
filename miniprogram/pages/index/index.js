@@ -91,7 +91,7 @@ Page({
       this.setData({
         goodList: res.result.data
       })
-      console.log(this.data.goodList);
+      console.log('[index.js] [onTabbarIndex] 获取商品：', this.data.goodList);
       wx.hideLoading()
     })
   },
@@ -115,7 +115,7 @@ Page({
           if (res.data.length == 1) {
             console.log(`[index] 欢迎管理员 [${this.data.openid}]`);
             app.globalData.isServer = true
-          }else{
+          } else {
             console.log('[index.js] [onGetOpenid] [您还不是管理员]');
             app.globalData.isServer = false
           }
@@ -126,5 +126,36 @@ Page({
         console.error('[云函数] [login] 调用失败', err)
       }
     })
+  },
+
+  onSearch(e) {
+    if (!e.detail) {
+      return null;
+    }
+    this.setData({
+      tabbarIndex: this.data.tabbarList.length,
+      goodList: []
+    })
+    for (let index = 0; index < this.data.eTabbarList.length; index++) {
+      wx.cloud.callFunction({
+        name: 'get',
+        data: {
+          dbName: this.data.eTabbarList[index],
+          where: {
+            goodName: db.RegExp({
+              regexp: e.detail,
+              options: 'i'
+            })
+          }
+        }
+      }).then(res => {
+        if (res.result.data.length > 0) {
+          console.log('[index.js] [onSearch] 搜索结果：', res.result.data);
+          this.setData({
+            goodList: this.data.goodList.concat(res.result.data)
+          })
+        }
+      })
+    }
   }
 })

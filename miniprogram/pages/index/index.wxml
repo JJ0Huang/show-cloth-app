@@ -1,12 +1,12 @@
 <!-- 输入框 -->
-<van-search value="{{ value }}" placeholder="请输入产品代号或产品名" />
+<van-search bind:search="onSearch" value="{{ value }}" placeholder="请输入产品代号或产品名" />
 
 <!-- 轮播图 -->
 <swiper autoplay="true" circular="true" style="background-color:#fff">
 	<block wx:for="{{swiperFileIds}}" wx:key="index">
 		<swiper-item>
-      <image src="{{item}}"></image>
-    </swiper-item>
+			<image src="{{item}}"></image>
+		</swiper-item>
 	</block>
 </swiper>
 
@@ -16,11 +16,12 @@
 		<block wx:for="{{tabbarList}}" wx:key="index">
 			<van-sidebar-item title="{{item}}" />
 		</block>
+		<van-sidebar-item title="搜索结果" />
 	</van-sidebar>
 
 	<view id="cardList">
 		<block wx:for="{{goodList}}" wx:key="index">
-			<navigator url="../goodDetail/goodDetail?dbName={{eTabbarList[tabbarIndex]}}&_id={{item._id}}">
+			<navigator url="../goodDetail/goodDetail?dbName={{item.dbName}}&_id={{item._id}}">
 				<van-card custom-class="card" desc="{{item.goodDescribe}}" title="{{item.goodName}}"
 					thumb="{{item.goodSwiper[0]}}" />
 			</navigator>

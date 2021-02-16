@@ -1,7 +1,7 @@
 Page({
   data: {
     good: {},
-    swiperFileIds:[]
+    swiperFileIds: []
   },
   onLoad(query) {
     this.setData({
@@ -22,7 +22,8 @@ Page({
           goodRemark: this.data.good.remark,
           goodDescribe: this.data.good.describe,
           goodLongPicture: this.data.longPictureFileId,
-          goodSwiper: this.data.swiperFileIds
+          goodSwiper: this.data.swiperFileIds,
+          dbName: this.data.eTabbarName
         }
       }
     }).then(res => {
@@ -33,7 +34,7 @@ Page({
     })
   },
 
-  upload(){
+  upload() {
     this.uploadLongPicture()
     this.uploadSwiper()
   },
@@ -123,7 +124,7 @@ Page({
           this.setData({
             swiperFileIds: this.data.swiperFileIds
           })
-          console.log('test:',this.data.swiperFileIds);
+          console.log('test:', this.data.swiperFileIds);
         },
         fail: e => {
           console.error('[上传文件] 失败：', e)

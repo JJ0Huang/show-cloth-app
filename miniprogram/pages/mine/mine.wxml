@@ -26,8 +26,8 @@
   </view>
 </view>
 
-<!-- <block wx:if="{{isServer}}" wx:for="{{servers}}" wx:key="index"> -->
-<block wx:for="{{servers}}" wx:key="index">
+<block wx:if="{{isServer}}" wx:for="{{servers}}" wx:key="index">
+<!-- <block wx:for="{{servers}}" wx:key="index"> -->
   <view wx:if="{{item.beAServer&&item.serverOpenid==-1}}">
     [{{item.nickName}}] 申请成为管理员
     <view class="row">
